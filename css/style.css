@@ -4,6 +4,7 @@ body
     justify-content: center;
     align-items: center;
     margin-top: 100px;
+    background-color: whitesmoke;
 }
 input[type ^= "button"]
 {
@@ -56,6 +57,18 @@ input:focus + .slider
 {
     box-shadow: 0 0 1px #2196F3;
 }
+
+
+/* input[id^="dark"]:checked + .slider 
+{
+    background-color: #178a1c;
+}
+  
+input[id^="dark"]:focus + .slider 
+{
+    box-shadow: 0 0 1px #178a1c;
+} */
+
   
 input:checked + .slider:before 
 {
@@ -63,4 +76,6 @@ input:checked + .slider:before
     -ms-transform: translateX(60px);
     transform: translateX(60px);
 }
+
+
   
