@@ -5,6 +5,7 @@ body
     align-items: center;
     margin-top: 100px;
     background-color: whitesmoke;
+    background-color: rgb(41, 41, 41);
 }
 input[type ^= "button"]
 {
@@ -23,6 +24,7 @@ input[type ^= "button"]
     display: inline-block;
     width: 120px;
     height: 60px;
+    margin-left: 50px;
 }
 
 .slider 
@@ -75,6 +77,15 @@ input:checked + .slider:before
     -webkit-transform: translateX(60px);
     -ms-transform: translateX(60px);
     transform: translateX(60px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
 }
 
 
