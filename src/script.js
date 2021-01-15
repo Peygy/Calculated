@@ -1,3 +1,8 @@
+var firstNumber = 0;
+var secondNumber = 0;
+var equal = 0;
+var action = "";
+
 window.onload = function() 
 {
     let Calc = document.createElement('div');
@@ -10,7 +15,7 @@ window.onload = function()
     inputLine.style.display = 'inline-block';
     inputLine.style.height = '60px';
     inputLine.style.boxSizing = 'border-box';
-    inputLine.type = 'number';
+    // inputLine.type = 'number';
     inputLine.id = 'Line';
     inputLine.readOnly = true;
     Calc.appendChild(inputLine);
@@ -88,7 +93,7 @@ window.onload = function()
     sum.id = '+';
     sum.type = 'button';
     sum.value = sum.id;
-    sum.setAttribute("onclick", "GetNumber(this)");
+    sum.setAttribute("onclick", "Action(this)");
     numsActions.appendChild(sum);
 
 
@@ -118,7 +123,7 @@ window.onload = function()
     minus.id = '-';
     minus.type = 'button';
     minus.value = minus.id;
-    minus.setAttribute("onclick", "GetNumber(this)");
+    minus.setAttribute("onclick", "Action(this)");
     numsActions.appendChild(minus);
 
 
@@ -148,14 +153,14 @@ window.onload = function()
     multi.id = '*';
     multi.type = 'button';
     multi.value = 'X';
-    multi.setAttribute("onclick", "GetNumber(this)");
+    multi.setAttribute("onclick", "Action(this)");
     numsActions.appendChild(multi);
 
 
 
 
     let dot = document.createElement('input');
-    dot.id = '.';
+    dot.id = ',';
     dot.type = 'button';
     dot.value = dot.id;
     numsActions.appendChild(dot);
@@ -171,13 +176,14 @@ window.onload = function()
     equally.id = '=';
     equally.type = 'button';
     equally.value = equally.id;
+    zero_num.setAttribute("onclick", "Equal()");
     numsActions.appendChild(equally);
 
     let division = document.createElement('input');
     division.id = '/';
     division.type = 'button';
     division.value = '÷';
-    division.setAttribute("onclick", "GetNumber(this)");
+    division.setAttribute("onclick", "Action(this)");
     numsActions.appendChild(division);
 }
 
@@ -204,25 +210,54 @@ function Checking()
 
 
 
-function GetNumber(num) // Забирает число, добавляет его в строку и в метод выполнения операций
+function GetNumber(num)
 {
-    document.getElementsById('Line').value += num.value; 
+    document.getElementById('Line').value += num.value; 
+}
+function Action(act)
+{
+    firstNumber = document.getElementById('Line').value;
+    document.getElementById('Line').value = "";
+    action = act.value;
+}
+
+
+
+function Equal()
+{
+    switch(action)
+    {
+        case "+":
+            secondNumber = document.getElementById('Line').value;
+            equal = Number(firstNumber) + Number(secondNumber);
+            break;
+        case "-":
+            secondNumber = document.getElementById('Line').value;
+            equal = Number(firstNumber) - Number(secondNumber);
+            break;
+        case "X":
+            secondNumber = document.getElementById('Line').value;
+            equal = Number(firstNumber) * Number(secondNumber);
+            break;
+        case "÷":
+            secondNumber = document.getElementById('Line').value;
+            equal = Number(firstNumber) / Number(secondNumber);
+            break;
+    }
+    document.getElementById('Line').value = "";
+    document.getElementById('Line').value = equal;
+}
+
+
+function Clean()
+{
+    document.getElementById('Line').value = "";
 }
 function Delete()
 {
-    var line = document.getElementsById('Line').value;
-    document.getElementsById('Line').value = line.substring(0, line.length - 1);
+    var line = document.getElementById('Line').value;
+    document.getElementById('Line').value = line.substring(0, line.length - 1);
 }
-function Equal()
-{
-    var line = document.getElementsById('Line').value;
-    document.getElementsById('Line').value = eval(line);
-}
-function Clean()
-{
-    document.getElementsById('Line').value = " ";
-}
-
 
 
 
