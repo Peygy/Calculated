@@ -15,7 +15,6 @@ window.onload = function()
     inputLine.style.display = 'inline-block';
     inputLine.style.height = '60px';
     inputLine.style.boxSizing = 'border-box';
-    // inputLine.type = 'number';
     inputLine.id = 'Line';
     inputLine.readOnly = true;
     Calc.appendChild(inputLine);
@@ -26,7 +25,7 @@ window.onload = function()
     BackSpace.type = 'button';
     BackSpace.style.height = '61px';
     BackSpace.id = 'Back';
-    BackSpace.value = '<---';
+    BackSpace.value = '←';
     BackSpace.setAttribute("onclick", "Delete()");
     Calc.appendChild(BackSpace);
 
@@ -50,11 +49,11 @@ window.onload = function()
     let checkInput = document.createElement('input');
     checkInput.type = 'checkbox';
     checkInput.id = 'checkbox';
-    checkInput.setAttribute("onclick", "GetNumber(this)");
     checking.appendChild(checkInput);
 
     let checkSpan = document.createElement('span');
     checkSpan.className = 'slider';
+    checkSpan.style.borderRadius = '3px';
     checking.appendChild(checkSpan);
 
 
@@ -152,7 +151,7 @@ window.onload = function()
     let multi = document.createElement('input');
     multi.id = '*';
     multi.type = 'button';
-    multi.value = 'X';
+    multi.value = 'x';
     multi.setAttribute("onclick", "Action(this)");
     numsActions.appendChild(multi);
 
@@ -229,29 +228,71 @@ function Equal()
     {
         case "+":
             secondNumber = document.getElementById('Line').value;
-            equal = Number(firstNumber) + Number(secondNumber);
+            if(secondNumber == null)
+            {
+                equal = Number(firstNumber);
+            }
+            else
+            {
+                equal = Number(firstNumber) + Number(secondNumber);
+            } 
             break;
+
         case "-":
             secondNumber = document.getElementById('Line').value;
-            equal = Number(firstNumber) - Number(secondNumber);
+            if(secondNumber == null)
+            {
+                equal = Number(firstNumber);
+            }
+            else
+            {
+                equal = Number(firstNumber) - Number(secondNumber);
+            }
             break;
-        case "X":
+
+        case "x":
             secondNumber = document.getElementById('Line').value;
-            equal = Number(firstNumber) * Number(secondNumber);
+            if(secondNumber == null)
+            {
+                equal = Number(firstNumber);
+            }
+            else
+            {
+                equal = Number(firstNumber) * Number(secondNumber);
+            }
             break;
+
         case "÷":
             secondNumber = document.getElementById('Line').value;
-            equal = Number(firstNumber) / Number(secondNumber);
+            if(secondNumber == null)
+            {
+                equal = Number(firstNumber);
+            }
+            else
+            {
+                if(secondNumber != 0)
+                {
+                    equal = Number(firstNumber) / Number(secondNumber);
+                }
+                else
+                {
+                    equal = "Math Error";
+                }
+            }
             break;
     }
     document.getElementById('Line').value = "";
     document.getElementById('Line').value = equal;
+    
 }
 
 
 function Clean()
 {
     document.getElementById('Line').value = "";
+    firstNumber = 0;
+    secondNumber = 0;
+    equal = 0;
 }
 function Delete()
 {

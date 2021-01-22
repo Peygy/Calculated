@@ -1,3 +1,8 @@
+input
+{
+    font-size: 30px;
+    font-family: 'Noto Sans', sans-serif;
+}
 body
 {
     display: flex;
@@ -11,6 +16,10 @@ input[type ^= "button"]
 {
     height: 90px;
     padding: 0;
+}
+input[id ^= "Line"]
+{
+    /* border-: 1px; */
 }
 
 .switch input 
@@ -59,18 +68,6 @@ input:focus + .slider
 {
     box-shadow: 0 0 1px #2196F3;
 }
-
-
-/* input[id^="dark"]:checked + .slider 
-{
-    background-color: #178a1c;
-}
-  
-input[id^="dark"]:focus + .slider 
-{
-    box-shadow: 0 0 1px #178a1c;
-} */
-
   
 input:checked + .slider:before 
 {
