@@ -2,6 +2,7 @@ var firstNumber = 0;
 var secondNumber = 0;
 var equal = 0;
 var action = "";
+var check = false;
 
 window.onload = function() 
 {
@@ -175,7 +176,7 @@ window.onload = function()
     equally.id = '=';
     equally.type = 'button';
     equally.value = equally.id;
-    zero_num.setAttribute("onclick", "Equal()");
+    equally.setAttribute("onclick", "Equal()");
     numsActions.appendChild(equally);
 
     let division = document.createElement('input');
@@ -215,9 +216,19 @@ function GetNumber(num)
 }
 function Action(act)
 {
-    firstNumber = document.getElementById('Line').value;
-    document.getElementById('Line').value = "";
-    action = act.value;
+    console.log(check);
+    if(check == false)
+    {
+        firstNumber = document.getElementById('Line').value;
+        document.getElementById('Line').value = "";
+        action = act.value;
+        check = !check;
+    }
+    else
+    {
+        Equal();
+    }
+    console.log(check);
 }
 
 
@@ -228,62 +239,32 @@ function Equal()
     {
         case "+":
             secondNumber = document.getElementById('Line').value;
-            if(secondNumber == null)
-            {
-                equal = Number(firstNumber);
-            }
-            else
-            {
-                equal = Number(firstNumber) + Number(secondNumber);
-            } 
+            equal = Number(firstNumber) + Number(secondNumber);
             break;
 
         case "-":
             secondNumber = document.getElementById('Line').value;
-            if(secondNumber == null)
-            {
-                equal = Number(firstNumber);
-            }
-            else
-            {
-                equal = Number(firstNumber) - Number(secondNumber);
-            }
+            equal = Number(firstNumber) - Number(secondNumber);
             break;
-
         case "x":
             secondNumber = document.getElementById('Line').value;
-            if(secondNumber == null)
-            {
-                equal = Number(firstNumber);
-            }
-            else
-            {
-                equal = Number(firstNumber) * Number(secondNumber);
-            }
+            equal = Number(firstNumber) * Number(secondNumber);
             break;
-
         case "÷":
             secondNumber = document.getElementById('Line').value;
-            if(secondNumber == null)
+            if(secondNumber != 0)
             {
-                equal = Number(firstNumber);
+                equal = Number(firstNumber) / Number(secondNumber);
             }
             else
             {
-                if(secondNumber != 0)
-                {
-                    equal = Number(firstNumber) / Number(secondNumber);
-                }
-                else
-                {
-                    equal = "Math Error";
-                }
+                equal = "Math Error";
             }
             break;
     }
     document.getElementById('Line').value = "";
     document.getElementById('Line').value = equal;
-    
+    check = !check;  
 }
 
 
@@ -293,6 +274,7 @@ function Clean()
     firstNumber = 0;
     secondNumber = 0;
     equal = 0;
+    check = false;
 }
 function Delete()
 {
